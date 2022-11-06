@@ -1,4 +1,3 @@
-import string
 from abc import ABC, abstractmethod
 
 
@@ -49,4 +48,3 @@ class ROT47(ROT):
     @staticmethod
     def decrypt(text: str, shift: int = 47) -> str:
         return ROT47.encrypt(text)
-
