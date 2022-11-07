@@ -10,6 +10,7 @@ class FileHandler:
             for msg in messages.buffer:
                 file.writelines(msg + '\n')
             file.close()
+            print('All messages have been saved!')
 
     @staticmethod
     def read_from_file(path: str) -> str:
