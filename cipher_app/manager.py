@@ -27,6 +27,7 @@ class Manager:
         self.__run = False
 
     def execute(self, user_input) -> None:
+        """ Execute options selected by user"""
         if user_input in self.__options:
             self.__options.get(user_input)()
         else:
@@ -34,7 +35,7 @@ class Manager:
 
     def __encrypt_message(self) -> None:
         """ Method for encrypt user input message and save it to the buffer list than
-            print out the success message with encrypted messages """
+            print out the success message with encrypted text """
         cipher_type: str = Menu.show_rot_submenu()
         if cipher_type in self.__rot_options:
             text_to_encrypt: str = input('Please write message to encrypt: ')
@@ -48,7 +49,7 @@ class Manager:
             self.__encrypt_message()
 
     def __decrypt_message(self) -> None:
-        """ Method for decrypt user input message and print out the success message with encrypted messages """
+        """ Method for decrypt user input message and print out the success message with decrypted text """
         cipher_type: str = Menu.show_rot_submenu()
         if cipher_type in self.__rot_options:
             text_to_decrypt: str = input('Please write message to decrypt: ')
