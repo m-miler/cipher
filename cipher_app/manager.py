@@ -1,6 +1,7 @@
 from cipher_app.buffer import Buffer
 from cipher_app.menu import Menu
 from cipher_app.rot import ROT13, ROT47
+from cipher_app.file_handler import FileHandler
 
 
 class Manager:
@@ -10,6 +11,7 @@ class Manager:
         self.__options = {
             "1": self.__encrypt_message,
             "2": self.__decrypt_message,
+            "3": self.__save_to_the_file,
             "5": self.__exit_app
         }
         self.__rot_options = {
@@ -60,6 +62,12 @@ class Manager:
         else:
             print('Incorrect option')
             self.__decrypt_message()
+
+    def __save_to_the_file(self) -> None:
+        """ Method to save all encrypted messages from buffer to the provided file.
+        If file already exist method will append result at the end. """
+        user_path: str = input('Please provide absolute path to the file: ')
+        FileHandler.write_to_file(user_path, self.buffer)
 
 
 if __name__ == "__main__":
