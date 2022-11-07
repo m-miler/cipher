@@ -9,6 +9,7 @@ class Manager:
         self.buffer = Buffer()
         self.__options = {
             "1": self.__encrypt_message,
+            "2": self.__decrypt_message,
             "5": self.__exit_app
         }
         self.__rot_options = {
@@ -32,17 +33,33 @@ class Manager:
             print("Incorrect option")
 
     def __encrypt_message(self) -> None:
-        cipher_type = Menu.show_rot_submenu()
+        """ Method for encrypt user input message and save it to the buffer list than
+            print out the success message with encrypted messages """
+        cipher_type: str = Menu.show_rot_submenu()
         if cipher_type in self.__rot_options:
-            text_to_encrypt = input('Please write message to encrypt: ')
-            encrypt_messages = self.__rot_options.get(cipher_type).encrypt(text_to_encrypt)
+            text_to_encrypt: str = input('Please write message to encrypt: ')
+            encrypt_messages: str = self.__rot_options.get(cipher_type).encrypt(text_to_encrypt)
             self.buffer.add(encrypt_messages)
-            print('Message has been encrypted!')
-        elif cipher_type == '3':
+            print(f'Message has been encrypted! -- {encrypt_messages}')
+        elif cipher_type == str(len(self.__rot_options) + 1):
             return
         else:
             print('Incorrect option')
             self.__encrypt_message()
 
+    def __decrypt_message(self) -> None:
+        """ Method for decrypt user input message and print out the success message with encrypted messages """
+        cipher_type: str = Menu.show_rot_submenu()
+        if cipher_type in self.__rot_options:
+            text_to_decrypt: str = input('Please write message to decrypt: ')
+            decrypt_messages: str = self.__rot_options.get(cipher_type).decrypt(text_to_decrypt)
+            print(f'Message has been decrypted! -- {decrypt_messages}')
+        elif cipher_type == str(len(self.__rot_options) + 1):
+            return
+        else:
+            print('Incorrect option')
+            self.__decrypt_message()
 
-Manager().start_app()
+
+if __name__ == "__main__":
+    Manager().start_app()
