@@ -15,10 +15,12 @@ class FileHandler:
     @staticmethod
     def read_from_file(path: str) -> list:
         path = Path(path)
-        with open(path, 'r', encoding="utf-8") as file:
-            lines = file.readlines()
-        test_to_decrypt = [line.strip() for line in lines]
-        return test_to_decrypt
+        try:
+            with open(path, 'r', encoding="utf-8") as file:
+                text_to_decrypt = [line.strip() for line in file.readlines()]
+            return text_to_decrypt
+        except FileNotFoundError as err:
+            print(err)
 
 
 if __name__ == "__main__":
