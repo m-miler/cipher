@@ -8,3 +8,7 @@ class Buffer:
 
     def add(self, text: str):
         self.__buffer.append(text)
+
+    def clear(self):
+        """ Remove all elements from the buffer list"""
+        self.__buffer.clear()
