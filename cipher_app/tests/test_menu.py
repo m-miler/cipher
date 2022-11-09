@@ -25,5 +25,4 @@ def test_should_print_rot_menu_in_terminal(capsys, mocker):
     assert cipher_type == '1'
     assert capture.out.strip() == "Cipher list:\n" \
                                   "1. ROT13\n" \
-                                  "2. ROT47\n" \
-                                  "3. Main Menu"
+                                  "2. ROT47"
