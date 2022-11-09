@@ -73,6 +73,20 @@ class Manager:
         user_path: str = input('Please provide absolute path to the file: ')
         FileHandler.write_to_file(user_path, self.buffer)
 
+    def __decrypt_from_file(self) -> None:
+        """ Method to read text from chosen file and decrypt it with selected cipher """
+        user_path: str = input('Please provide absolute path to the file: ')
+        texts_to_decrypt: list = FileHandler.read_from_file(user_path)
+        if texts_to_decrypt:
+            while True:
+                cipher_type: str = self.__get_cipher_type()
+                if cipher_type:
+                    break
+            decrypted_text: list = [self.__rot_options.get(cipher_type).decrypt(text) for text in texts_to_decrypt]
+            return print(decrypted_text)
+        else:
+            self.__decrypt_from_file()
+
 
 if __name__ == "__main__":
     Manager().start_app()
