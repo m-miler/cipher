@@ -19,6 +19,5 @@ class Menu:
         print("\nCipher list:")
         print("1. ROT13")
         print("2. ROT47")
-        print("3. Main Menu")
-        cipher_type = input("\nPlease choose the cipher method: ")
+        cipher_type = input("Please choose the cipher method: ")
         return cipher_type
