@@ -7,15 +7,15 @@ from cipher_app.rot import ROT13, ROT47
 class Manager:
     def __init__(self) -> None:
         self.__run: bool = True
-        self.buffer = Buffer()
-        self.__options = {
+        self.buffer: Buffer = Buffer()
+        self.__options: dict = {
             "1": self.__encrypt_message,
             "2": self.__decrypt_message,
             "3": self.__save_to_the_file,
             "4": self.__decrypt_from_file,
             "5": self.__exit_app
         }
-        self.__rot_options = {
+        self.__rot_options: dict = {
             "1": ROT13,
             "2": ROT47,
         }
@@ -63,15 +63,16 @@ class Manager:
         if cipher_type:
             text_to_decrypt: str = input('Please write message to decrypt: ')
             decrypt_messages: str = self.__rot_options.get(cipher_type).decrypt(text_to_decrypt)
-            print(f'Message has been decrypted! -- {decrypt_messages}')
+            print(f'Message has been decrypted and saved! -- {decrypt_messages}')
         else:
             self.__decrypt_message()
 
     def __save_to_the_file(self) -> None:
         """ Method to save all encrypted messages from buffer to the provided file.
-        If file already exist method will append result at the end. """
+        If file already exist method will append result at the end. If success then clear the buffer list """
         user_path: str = input('Please provide absolute path to the file: ')
         FileHandler.write_to_file(user_path, self.buffer)
+        self.buffer.clear()
 
     def __decrypt_from_file(self) -> None:
         """ Method to read text from chosen file and decrypt it with selected cipher """
@@ -86,7 +87,3 @@ class Manager:
             return print(decrypted_text)
         else:
             self.__decrypt_from_file()
-
-
-if __name__ == "__main__":
-    Manager().start_app()
