@@ -22,6 +22,3 @@ class FileHandler:
         except FileNotFoundError as err:
             print(err)
 
-
-if __name__ == "__main__":
-    print(FileHandler.read_from_file('test.txt'))
