@@ -23,3 +23,4 @@ Run Code ``` python main.py ```
 
 
 ## Application view
+<img src="https://user-images.githubusercontent.com/62297597/206497767-d2968ed8-da06-442b-943e-1ac35e7c40c8.PNG">
